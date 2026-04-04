@@ -216,61 +216,62 @@ def are_we_awake(cg):
 ##  Commands for exercising Blinkenhub
 ##
 
-device = None
-
-@click.group()
-@click.option('--port', envvar='BLINKENHUB_PORT', default='/dev/cu.usbmodem21101')
-def cli(port):
-	global device
-	device = port
-
-@cli.command()
-def run():
-	# Load CoreGraphics
-	cg = ctypes.cdll.LoadLibrary(
-		"/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics"
-	)
-
-	# Set return type for CGDisplayIsAsleep (returns boolean int)
-	cg.CGDisplayIsAsleep.restype = ctypes.c_int
-	cg.CGGetActiveDisplayList.restype = ctypes.c_int
-
-	bh = Blinkenhub(device)
-
-	while(True):
-		if not are_we_awake(cg):
-			stop_animations()
-			while not are_we_awake(cg):
-				colors = mk_random_colors(.25)
-				bh.send(SetPixels(colors, 0))
-				sleep(.25)
-		else:
-			stop_animations()
-			colors = [
-				HSV_Color(0, 1, .1),
-				HSV_Color(0, 1, .5),
-				HSV_Color(0, 1, .1),
-				HSV_Color(0, 1, 0),
-				HSV_Color(0, 1, 0),
-				HSV_Color(0, 1, 0),
-				HSV_Color(0, 1, 0),
-				HSV_Color(0, 1, 0),
-				HSV_Color(0, 1, 0),
-				HSV_Color(0, 1, 0),
-				HSV_Color(0, 1, 0),
-				HSV_Color(0, 1, 0),
-				HSV_Color(0, 1, 0),
-				HSV_Color(0, 1, 0),
-				HSV_Color(0, 1, 0),
-				HSV_Color(0, 1, 0),
-				HSV_Color(0, 1, 0)
-			]
-			bh.send(SetPixels(colors, 0))
-			bh.send(Rotate(Rotate.CYLON, 10, 14))
-			while are_we_awake(cg):
-				sleep(.5)
-
 if __name__ == '__main__':
+
+	device = None
+
+	@click.group()
+	@click.option('--port', envvar='BLINKENHUB_PORT', default='/dev/cu.usbmodem21101')
+	def cli(port):
+		global device
+		device = port
+
+	@cli.command()
+	def run():
+		# Load CoreGraphics
+		cg = ctypes.cdll.LoadLibrary(
+			"/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics"
+		)
+
+		# Set return type for CGDisplayIsAsleep (returns boolean int)
+		cg.CGDisplayIsAsleep.restype = ctypes.c_int
+		cg.CGGetActiveDisplayList.restype = ctypes.c_int
+
+		bh = Blinkenhub(device)
+
+		while(True):
+			if not are_we_awake(cg):
+				stop_animations()
+				while not are_we_awake(cg):
+					colors = mk_random_colors(.25)
+					bh.send(SetPixels(colors, 0))
+					sleep(.25)
+			else:
+				stop_animations()
+				colors = [
+					HSV_Color(0, 1, .1),
+					HSV_Color(0, 1, .5),
+					HSV_Color(0, 1, .1),
+					HSV_Color(0, 1, 0),
+					HSV_Color(0, 1, 0),
+					HSV_Color(0, 1, 0),
+					HSV_Color(0, 1, 0),
+					HSV_Color(0, 1, 0),
+					HSV_Color(0, 1, 0),
+					HSV_Color(0, 1, 0),
+					HSV_Color(0, 1, 0),
+					HSV_Color(0, 1, 0),
+					HSV_Color(0, 1, 0),
+					HSV_Color(0, 1, 0),
+					HSV_Color(0, 1, 0),
+					HSV_Color(0, 1, 0),
+					HSV_Color(0, 1, 0)
+				]
+				bh.send(SetPixels(colors, 0))
+				bh.send(Rotate(Rotate.CYLON, 10, 14))
+				while are_we_awake(cg):
+					sleep(.5)
+
 
 	@cli.command()
 	def stop():
