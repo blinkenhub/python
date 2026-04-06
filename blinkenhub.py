@@ -240,9 +240,9 @@ if __name__ == '__main__':
 		bh = Blinkenhub(device)
 
 		while(True):
-			if not are_we_awake(cg):
+			if are_we_awake(cg):
 				stop_animations()
-				while not are_we_awake(cg):
+				while are_we_awake(cg):
 					colors = mk_random_colors(.25)
 					bh.send(SetPixels(colors, 0))
 					sleep(.25)
@@ -269,7 +269,7 @@ if __name__ == '__main__':
 				]
 				bh.send(SetPixels(colors, 0))
 				bh.send(Rotate(Rotate.CYLON, 10, 14))
-				while are_we_awake(cg):
+				while not are_we_awake(cg):
 					sleep(.5)
 
 
