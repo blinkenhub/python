@@ -361,8 +361,8 @@ if __name__ == '__main__':
 	@click.option('-d', '--down', 'typ', flag_value=Animation.ANIMATE_DOWN)
 	@click.option('-o', '--oscillate', 'typ', flag_value=Animation.ANIMATE_UPDOWN)
 	@click.option('-r', '--rate', default=1.0, help='Rate of change as cycles per second)')
-	@click.option('-t', '--top', default=1.0, help='Terminal high value [0.0, 1.0]')
-	@click.option('-b', '--bottom', default=0.0, help='Terminal low value [0.0, 1.0]')
+	@click.option('-t', '--top', default=1.0, help='Terminal high value')
+	@click.option('-b', '--bottom', default=0.0, help='Terminal low value')
 	@click.option('-c', '--count', default=1, help='Number of times to perform animation; -1 == forever')
 	def animate_saturation(typ, rate, top, bottom, count):
 		if Blinkenhub(device).send(SaturationAnimation(typ, rate, top, bottom, count)):
@@ -376,8 +376,8 @@ if __name__ == '__main__':
 	@click.option('-d', '--down', 'typ', flag_value=Animation.ANIMATE_DOWN)
 	@click.option('-o', '--oscillate', 'typ', flag_value=Animation.ANIMATE_UPDOWN)
 	@click.option('-r', '--rate', default=1.0, help='Rate of change as cycles per second)')
-	@click.option('-t', '--top', default=1.0, help='Terminal high value [0.0, 1.0]')
-	@click.option('-b', '--bottom', default=0.0, help='Terminal low value [0.0, 1.0]')
+	@click.option('-t', '--top', default=1.0, help='Terminal high value')
+	@click.option('-b', '--bottom', default=0.0, help='Terminal low value')
 	@click.option('-c', '--count', default=1, help='Number of times to perform animation; -1 == forever')
 	def animate_value(typ, rate, top, bottom, count):
 		if Blinkenhub(device).send(ValueAnimation(typ, rate, top, bottom, count)):
