@@ -18,7 +18,7 @@ import crc
 import struct
 from crc import Calculator, Crc8
 import serial
-import click
+import serial.tools.list_ports
 from random import random
 from time import sleep
 import asyncio
@@ -52,8 +52,17 @@ class Blinkenhub:
 	NACK = 'N'
 	ETX = 0x03
 
-	def __init__(self, port):
+	def __init__(self, port=None):
 		self.calculator = Calculator(Crc8.CCITT)
+		if port is None:
+			# find blinkenhub
+			for p in serial.tools.list_ports.comports():
+				if p.manufacturer == 'Systemix' and p.product == 'Blinkenhub':
+					port = p.device
+					break
+			if port is None:
+				raise Exception("Blinkenhub not found")	
+			
 		self.ser = serial.Serial(port, timeout=.5)
 
 	def prepare_buf(self, buf):
@@ -218,10 +227,12 @@ def are_we_awake(cg):
 
 if __name__ == '__main__':
 
+	import click
+
 	device = None
 
 	@click.group()
-	@click.option('--port', envvar='BLINKENHUB_PORT', default='/dev/cu.usbmodem21101')
+	@click.option('--port', envvar='BLINKENHUB_PORT', help='Serial port to which Blinkenhub is connected')
 	def cli(port):
 		global device
 		device = port
