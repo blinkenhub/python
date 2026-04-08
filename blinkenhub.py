@@ -315,9 +315,9 @@ if __name__ == '__main__':
 	@click.argument('gamma', default=1.0)
 	def set_gamma(gamma):
 		if Blinkenhub(device).send(SetGamma(gamma)):
-			print('OK') 
+			click.echo('OK') 
 		else:
-			print('Error')
+			click.echo('Error')
 
 	@cli.command()
 	@click.option('-p', '--pixel', type=(float, float, float), multiple=True)
@@ -327,7 +327,6 @@ if __name__ == '__main__':
 		colors = []
 		for p in pixel:
 			colors += [HSV_Color(p[0], p[1], p[2])]
-		print(default)
 		if default is not None:
 			d = HSV_Color(default[0], default[1], default[2])
 		else:
@@ -336,9 +335,9 @@ if __name__ == '__main__':
 		for _ in range(17 - len(pixel)):
 			colors += [d]
 		if Blinkenhub(device).send(SetPixels(colors, fade)):
-			print('OK') 
+			click.echo('OK') 
 		else:
-			print('Error')
+			click.echo('Error')
 
 	@cli.command()
 	@click.option('-n', '--none', 'typ', flag_value=Animation.ANIMATE_NONE, default=True)
@@ -351,9 +350,9 @@ if __name__ == '__main__':
 	@click.option('-c', '--count', default=1, help='Number of times to perform animation; -1 == forever')
 	def animate_hue(typ, rate, top, bottom, count):
 		if Blinkenhub(device).send(HueAnimation(typ, rate, top, bottom, count)):
-			print('OK') 
+			click.echo('OK') 
 		else:
-			print('Error')
+			click.echo('Error')
 
 	@cli.command()
 	@click.option('-n', '--none', 'typ', flag_value=Animation.ANIMATE_NONE, default=True)
@@ -366,10 +365,10 @@ if __name__ == '__main__':
 	@click.option('-c', '--count', default=1, help='Number of times to perform animation; -1 == forever')
 	def animate_saturation(typ, rate, top, bottom, count):
 		if Blinkenhub(device).send(SaturationAnimation(typ, rate, top, bottom, count)):
-			print('OK') 
+			click.echo('OK') 
 		else:
-			print('Error')
-		
+			click.echo('Error')
+
 	@cli.command()
 	@click.option('-n', '--none', 'typ', flag_value=Animation.ANIMATE_NONE, default=True)
 	@click.option('-u', '--up', 'typ', flag_value=Animation.ANIMATE_UP)
@@ -381,9 +380,9 @@ if __name__ == '__main__':
 	@click.option('-c', '--count', default=1, help='Number of times to perform animation; -1 == forever')
 	def animate_value(typ, rate, top, bottom, count):
 		if Blinkenhub(device).send(ValueAnimation(typ, rate, top, bottom, count)):
-			print('OK') 
+			click.echo('OK') 
 		else:
-			print('Error')
+			click.echo('Error')
 
 	@cli.command()
 	@click.option('--none', 'typ', flag_value=Rotate.NONE, default=True)
@@ -394,8 +393,8 @@ if __name__ == '__main__':
 	@click.option('-l', '--limit', default=1, help='Number of pixels to rotate in cylon mode')
 	def rotate(typ, rate, limit):
 		if Blinkenhub(device).send(Rotate(typ, rate, limit)):
-			print('OK') 
+			click.echo('OK') 
 		else:
-			print('Error')
+			click.echo('Error')
 
 	cli()
