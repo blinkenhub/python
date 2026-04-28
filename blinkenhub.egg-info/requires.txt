@@ -1,0 +1,4 @@
+crc
+pyserial
+SMPClient
+click

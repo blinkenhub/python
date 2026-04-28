@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blinkenhub"
+version = "0.1"
+dependencies = [
+    "crc",
+    "pyserial",
+    "SMPClient",
+    "click"
+]
+authors = [
+    {name = "Brian Cuthie", email = "brian@systemix.com"}
+]
+description = "Module and cli to control the Blinkhub MacMini stand"
+license = "MIT"
+
+[project.urls]
+homepage = "https://blinkenhub.com"
+
+[project.scripts]
+blinkenhub = "blinkenhub:main"

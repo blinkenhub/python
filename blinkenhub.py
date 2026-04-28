@@ -225,7 +225,7 @@ def are_we_awake(cg):
 ##  Commands for exercising Blinkenhub
 ##
 
-if __name__ == '__main__':
+def main():
 
 	import click
 
@@ -398,3 +398,8 @@ if __name__ == '__main__':
 			click.echo('Error')
 
 	cli()
+
+
+if __name__ == '__main__':
+
+	main()
