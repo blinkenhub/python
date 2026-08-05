@@ -14,19 +14,16 @@
 # For licensing inquiries, contact: info@systemix.com
 #
 
-import crc
 import struct
 from crc import Calculator, Crc8
 import serial
 import serial.tools.list_ports
 from random import random
 from time import sleep
-import asyncio
 from smpclient import SMPClient
 from smpclient.generics import error, success
 from smpclient.transport.serial import SMPSerialTransport
 import ctypes
-import subprocess
 
 
 class TimeoutException(Exception):
@@ -226,7 +223,7 @@ def are_we_awake(cg):
 ##
 
 def main():
-
+		
 	import click
 
 	device = None
@@ -398,7 +395,6 @@ def main():
 			click.echo('Error')
 
 	cli()
-
 
 if __name__ == '__main__':
 
