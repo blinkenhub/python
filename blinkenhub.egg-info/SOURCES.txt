@@ -1,8 +1,0 @@
-blinkenhub.py
-pyproject.toml
-blinkenhub.egg-info/PKG-INFO
-blinkenhub.egg-info/SOURCES.txt
-blinkenhub.egg-info/dependency_links.txt
-blinkenhub.egg-info/entry_points.txt
-blinkenhub.egg-info/requires.txt
-blinkenhub.egg-info/top_level.txt

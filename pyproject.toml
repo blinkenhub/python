@@ -4,21 +4,38 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "blinkenhub"
-version = "0.1"
-dependencies = [
-    "crc",
-    "pyserial",
-    "SMPClient",
-    "click"
-]
+version = "0.1.0"
+description = "Python library and command-line tool to control the Blinkenhub Mac mini stand"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
 authors = [
     {name = "Brian Cuthie", email = "brian@systemix.com"}
 ]
-description = "Module and cli to control the Blinkhub MacMini stand"
-license = "MIT"
+keywords = ["blinkenhub", "led", "mac mini", "serial", "rgb"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: System :: Hardware",
+]
+dependencies = [
+    "click",
+    "crc",
+    "pyserial",
+]
 
 [project.urls]
-homepage = "https://blinkenhub.com"
+Homepage = "https://blinkenhub.com"
+Source = "https://github.com/blinkenhub/python"
+Issues = "https://github.com/blinkenhub/python/issues"
 
 [project.scripts]
 blinkenhub = "blinkenhub:main"
+
+[tool.setuptools]
+py-modules = ["blinkenhub"]

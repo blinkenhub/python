@@ -1,4 +1,0 @@
-crc
-pyserial
-SMPClient
-click

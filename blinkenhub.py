@@ -1,18 +1,8 @@
-
+# SPDX-License-Identifier: MIT
 #
-# Copyright (c) 2026 Systemix Software, Inc. All rights reserved.
+# Copyright (c) 2026 Systemix Software, Inc.
 #
-# PROPRIETARY AND CONFIDENTIAL
-#
-# This software and its documentation are proprietary to Systemix Software, Inc.
-# and may not be reproduced, distributed, disclosed, or used in any form
-# without the express written permission of Systemix Software, Inc.
-#
-# Unauthorized copying, modification, distribution, or use of this software,
-# via any medium, is strictly prohibited.
-#
-# For licensing inquiries, contact: info@systemix.com
-#
+# See the LICENSE file for the full license text.
 
 """Control library and command-line interface for the Blinkenhub Mac mini stand.
 
@@ -44,9 +34,6 @@ import serial
 import serial.tools.list_ports
 from random import random
 from time import sleep
-from smpclient import SMPClient
-from smpclient.generics import error, success
-from smpclient.transport.serial import SMPSerialTransport
 import ctypes
 
 
